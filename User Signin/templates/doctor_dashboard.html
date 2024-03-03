@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Doctor Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        h1, h2 {
+            color: #070101;
+        }
+
+        p {
+            color: #000000;
+            margin-bottom: 10px;
+        }
+
+        .dashboard-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #9585cc;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .logout-link {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .logout-link a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .logout-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <h1>Welcome, {{ user.first_name }} {{ user.last_name }}</h1>
+        <h2>Your Doctor Dashboard</h2>
+        <p>User Type: Doctor</p>
+        <p>Username: {{ user.username }}</p>
+        <p>Email: {{ user.email }}</p>
+       
+        <div class="logout-link">
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </div>
+    </div>
+</body>
+</html>

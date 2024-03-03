@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Signup</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #010000;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #776ebd;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            text-align: left;
+            margin-bottom: 10px;
+            color: #010000;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        select {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #080707;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .show-password-container {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        input[type="checkbox"] {
+            display: inline-block;
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+
+        .show-password-label {
+            display: inline-block;
+            vertical-align: middle;
+            color: #000000;
+            margin-top: 12px;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Signup Form</h1>
+    <form method="POST" action="{{ url_for('signup') }}" onsubmit="return validatePassword()">
+        <label for="user_type">Select User Type:</label>
+        <select id="user_type" name="user_type">
+            <option value="patient">Patient</option>
+            <option value="doctor">Doctor</option>
+        </select><br><br>
+        <label for="first_name">First Name:</label>
+        <input type="text" id="first_name" name="first_name" placeholder="Enter your first name" required><br><br>
+        <label for="last_name">Last Name:</label>
+        <input type="text" id="last_name" name="last_name" placeholder="Enter your last name"  required><br><br>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" placeholder="Enter your username"  required><br><br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="Enter your  email"  required><br><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password"  required><br><br>
+        <label for="confirm_password">Confirm Password:</label>
+        <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirn password"  required><br><br>
+        <div class="show-password-container">
+            <input type="checkbox" id="show_password_checkbox" onclick="showPassword()">
+            <label class="show-password-label" for="show_password_checkbox">Show Password</label>
+        </div>
+        <input type="submit" value="Signup">
+    </form>
+
+    <script>
+        function showPassword() {
+            var passwordField = document.getElementById("password");
+            var confirmPasswordField = document.getElementById("confirm_password");
+            var showPasswordCheckbox = document.getElementById("show_password_checkbox");
+
+            if (showPasswordCheckbox.checked) {
+                passwordField.type = "text";
+                confirmPasswordField.type = "text";
+            } else {
+                passwordField.type = "password";
+                confirmPasswordField.type = "password";
+            }
+        }
+
+        function validatePassword() {
+            var password = document.getElementById("password").value;
+            var confirmPassword = document.getElementById("confirm_password").value;
+
+            if (password != confirmPassword) {
+                alert("Passwords do not match!");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</body>
+</html>
